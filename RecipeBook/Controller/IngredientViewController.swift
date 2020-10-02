@@ -28,6 +28,7 @@ class IngredientViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     
     override func viewDidLoad(){
+        super.viewDidLoad()
         liquidButton.isSelected = false
         solidButton.isSelected = true
         
@@ -80,10 +81,7 @@ class IngredientViewController: UIViewController {
         else {
             typeOfMeasurement = Ingredient.availableLiquidMeasurements[measurementType.selectedRow(inComponent: 0)]
         }
-     /*   if ingredientNameTextField.text!.isEmpty {
-            throw IllegalEntryError.empty
-        }*/
-        
+    
         do {
         
         try Utilities.checkIfEmpty(string: ingredientNameTextField.text!)
