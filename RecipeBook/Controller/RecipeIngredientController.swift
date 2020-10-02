@@ -17,15 +17,28 @@ class RecipeIngredientController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var ingredientTableView: UITableView!
 
+    @IBOutlet weak var emptyIngredientsLabel: UILabel!
+    
     override func viewDidLoad() {
         ingredientTableView.dataSource = self
         ingredientTableView.delegate = self
-        
-        
+        print(ingredients)
     }
+    
+    //FIX ME
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        if ingredients.count > 1 {
+            emptyIngredientsLabel.isHidden = true
+        }
+        else {
+            emptyIngredientsLabel.isHidden = false
+        }
+        
+        
     }
+
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ingredientsListToAddIngredient" {
@@ -43,12 +56,28 @@ extension RecipeIngredientController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            
         let cell = ingredientTableView.dequeueReusableCell(withIdentifier: "ingredientCell")!
-        let text = "\(ingredients[indexPath.row].getName())"
+        let text = "\(ingredients[indexPath.row].getAmount()) \(ingredients[indexPath.row].getMeasurementType()) \(ingredients[indexPath.row].getName())"
         
         cell.textLabel?.text = text
         return cell
 
        }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let handler: UIContextualAction.Handler = { (action: UIContextualAction, view: UIView, completionHandler: ((Bool) -> Void)) in
+            self.ingredients.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            completionHandler(true)
+        }
+        
+        let deleteAction = UIContextualAction(style: UIContextualAction.Style.destructive, title: "Delete", handler: handler)
+        // Add more actions here if required
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = true
+        return configuration
+    }
+    
        
 }
 
