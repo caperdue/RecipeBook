@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 
 class StartRecipeController: UIViewController {
-
     
     @IBOutlet weak var goToIngredientButton: UIButton!
    
     @IBOutlet weak var recipeNameTextField: UITextField!
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
     }
     
     @IBAction func gotToIngredientButtonPressed(_ sender: UIButton) {
@@ -32,6 +31,11 @@ class StartRecipeController: UIViewController {
         
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                
            // Create a variable to store the name the user entered on textField
