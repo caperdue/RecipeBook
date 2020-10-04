@@ -5,14 +5,15 @@
 //  Created by Carly Perdue on 9/13/20.
 //  Copyright © 2020 Carly Perdue. All rights reserved.
 //
+import Foundation
+import UIKit
 
 protocol IngredientVCDelegate {
     func addIngredientToList(newIngredient: Ingredient)
     func reloadIngredients()
+    func removeStarterMessage(view: UIViewController)
 }
 
-import Foundation
-import UIKit
 
 class IngredientViewController: UIViewController {
 
@@ -84,33 +85,19 @@ class IngredientViewController: UIViewController {
     
         do {
         
-        try Utilities.checkIfEmpty(string: ingredientNameTextField.text!)
-        
+            try Utilities.checkIfEmpty(string: ingredientNameTextField.text!)
+            try Utilities.checkIfEmpty(string: amountTextField.text!)
             let amountSplit = amountTextField.text?.split(separator: " ")
+            
+            //Running this guarantees that the entry is valid through string conversion without throwing errors
+            _ = try Utilities.convertStringsToFloat(strings: amountSplit)
+            let ingredient = Ingredient(name: ingredientNameTextField.text!, amount: amountTextField.text!, measurementType: typeOfMeasurement)
         
-       
-            
-        switch (amountSplit?.count) {
-            case 1:
-                _ = try Utilities.convertStringsToFloat(string1: String(amountSplit![0]), string2: nil)
+            delegate?.addIngredientToList(newIngredient: ingredient)
+            //Reload ingredients here for quick update in TableView
+            delegate?.reloadIngredients()
+            delegate?.removeStarterMessage(view: delegate as! UIViewController)
 
-            case 2:
-                _ = try Utilities.convertStringsToFloat(string1: String(amountSplit![0]), string2: String(amountSplit![1]))
-
-            
-            default:
-                print("error")
-            }
-            
-        
-        let ingredient = Ingredient(name: ingredientNameTextField.text!, amount: amountTextField.text!, measurementType: typeOfMeasurement)
-            
-        delegate?.addIngredientToList(newIngredient: ingredient)
-            //added comment
-        //Reload ingredients here for quick update in TableView
-        delegate?.reloadIngredients()
-            
-        print(ingredient)
             
         //Navigate back to previous controller
         navigationController?.popViewController(animated: true)

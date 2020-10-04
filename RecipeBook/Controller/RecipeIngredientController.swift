@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class RecipeIngredientController: UIViewController, UITableViewDelegate {
     
     var recipeName:String?
@@ -22,24 +21,8 @@ class RecipeIngredientController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         ingredientTableView.dataSource = self
         ingredientTableView.delegate = self
-        print(ingredients)
     }
     
-    //FIX ME
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        if ingredients.count > 1 {
-            emptyIngredientsLabel.isHidden = true
-        }
-        else {
-            emptyIngredientsLabel.isHidden = false
-        }
-        
-        
-    }
-
-   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ingredientsListToAddIngredient" {
             let destinationVC = segue.destination as! IngredientViewController
@@ -82,6 +65,14 @@ extension RecipeIngredientController: UITableViewDataSource {
 }
 
 extension RecipeIngredientController: IngredientVCDelegate {
+    func removeStarterMessage(view: UIViewController) {
+        if emptyIngredientsLabel.isHidden == false && ingredients.count > 0 {
+            emptyIngredientsLabel.isHidden = true
+        }
+    }
+    
+    
+    
     func reloadIngredients() {
         DispatchQueue.main.async {
             self.ingredientTableView.reloadData()
