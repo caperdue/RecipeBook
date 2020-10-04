@@ -34,6 +34,7 @@ class Utilities {
         }
         
     }
+    
     static func convertFraction(fractionString: String) -> Float? {
         let convertedFraction = fractionString.split(separator: "/")
         
