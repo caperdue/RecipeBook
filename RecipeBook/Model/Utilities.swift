@@ -36,6 +36,7 @@ class Utilities {
     }
     static func convertFraction(fractionString: String) -> Float? {
         let convertedFraction = fractionString.split(separator: "/")
+        
       
         if convertedFraction.count == 2 {
             if let numerator = Float(convertedFraction[0]), let denominator = Float(convertedFraction[1]) {
@@ -46,36 +47,53 @@ class Utilities {
         return nil
         }
     
-    static func convertStringsToFloat(string1: String?, string2: String?) throws -> (Float)?   {
+    static func convertStringsToFloat(strings: [String.SubSequence]?) throws -> (Float)?   {
         var ingredientAmount:Float? = 0
 
         //If there is 1 string, handle operations
-        if string1 != nil && string2 == nil && convertOneStringToFloat(string1) != nil {
-            ingredientAmount = convertOneStringToFloat(string1!)!
+        if strings!.count > 2 {
+            throw IllegalEntryError.invalidEntry
+        }
+        
+        else if strings!.count == 1 {
+            if let validString1 = convertWholeNumberToFloat(String(strings![0])) {
+                ingredientAmount = validString1
+            }
+            if let validString1 = convertFraction(fractionString: String(strings![0])) {
+                ingredientAmount = validString1
+            }
+            
         }
             
         //If there are 2 strings, handle operation here
-        else if string1 != nil && string2 != nil && convertOneStringToFloat(string1) != nil && convertOneStringToFloat(string2) != nil  {
-            ingredientAmount! += convertOneStringToFloat(string1!)!
-            ingredientAmount! += convertOneStringToFloat(string2!)!
+        else if strings!.count == 2  {
+            if let validString1 = convertWholeNumberToFloat(String(strings![0])), let validString2 = convertFraction(fractionString: String(strings![1])) {
+        
+                ingredientAmount! += validString1
+                ingredientAmount! += validString2
+                }
         }
-        guard ingredientAmount! > 0.0 else {
+        
+        guard ingredientAmount != nil && ingredientAmount! != 0 else {
+            print("ran here")
             throw IllegalEntryError.invalidEntry
         }
         return ingredientAmount
        
     }
     
-    static func convertOneStringToFloat(_ string: String?) -> Float? {
-        if let floatIngredientAmount = Float(string!) {
-            return floatIngredientAmount
+    
+    static func convertWholeNumberToFloat(_ string: String?) -> Float? {
+        
+        if let ingredientAmount = Float(string!) {
+            //Make sure float conversion is greater than 0 (whole number)
+            if ingredientAmount > 0.0 {
+                return ingredientAmount
+            }
         }
         
-        if let fractionFloatIngredientAmount = convertFraction(fractionString: string!) {
-            return fractionFloatIngredientAmount
-        }
+        //Happens if string cannot be converted to a whole number
         return nil
+ 
     }
-       
-            
-    }
+}
