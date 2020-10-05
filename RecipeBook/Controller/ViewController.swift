@@ -11,12 +11,8 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource {
     let myRecipeBook: RecipeBook = RecipeBook()
     
-     @IBOutlet weak var recipeTableView: UITableView!
-    
-    
-    @IBAction func addRecipe(_ sender: UIButton) {
-        
-    }
+    @IBOutlet weak var recipeTableView: UITableView!
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RecipeBook.allRecipes.count
     }
