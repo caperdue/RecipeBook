@@ -321,7 +321,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-tK-nF2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-tK-nF2">
                                 <rect key="frame" x="0.0" y="367" width="414" height="441"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -329,6 +329,7 @@
                         <viewLayoutGuide key="safeArea" id="u9o-cV-xbQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="9xh-tK-nF2" firstAttribute="top" secondItem="BA9-b0-IWL" secondAttribute="bottom" constant="247" id="3uY-qg-vJq"/>
                             <constraint firstItem="9xh-tK-nF2" firstAttribute="bottom" secondItem="ZDV-hj-D74" secondAttribute="bottom" id="8dJ-jU-ytY"/>
                             <constraint firstItem="BA9-b0-IWL" firstAttribute="top" secondItem="u9o-cV-xbQ" secondAttribute="top" constant="20" id="BRz-jf-gTb"/>
                             <constraint firstItem="BA9-b0-IWL" firstAttribute="trailing" secondItem="ZDV-hj-D74" secondAttribute="trailing" constant="-10" id="J2j-3v-pET"/>
