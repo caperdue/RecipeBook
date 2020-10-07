@@ -74,7 +74,6 @@
 				42F26EBD250D85B900624CFC /* Main.storyboard */,
 				42631E12252E4754000C7D0C /* listCell.swift */,
 				42E54542252BDCB300DBB5D7 /* listCell.xib */,
-				42E5453F252BD90B00DBB5D7 /* StepsController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -82,6 +81,7 @@
 		42B6A3C3250E8A15005FAFDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				42E5453F252BD90B00DBB5D7 /* StepsController.swift */,
 				42F26EBB250D85B900624CFC /* ViewController.swift */,
 				42F71293251FE40D00149FF0 /* StartRecipeController.swift */,
 				42F26ECD250DACCE00624CFC /* RecipeIngredientController.swift */,
