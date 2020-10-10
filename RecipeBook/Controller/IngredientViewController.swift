@@ -48,7 +48,6 @@ class IngredientViewController: UIViewController {
     
     
     @IBAction func solidLiquidPressed(_ sender: UIButton) {
-  
         measurementType.reloadAllComponents()
         
         liquidButton.isSelected = false
