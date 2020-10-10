@@ -9,27 +9,38 @@
 import Foundation
 import UIKit
 
-class StepsController: UIViewController {
-    
-    var steps:[String] = ["hello"]
+protocol StepsControllerVC {
+    func toggleCellEditing()
+}
+
+class StepsController: UIViewController, UITextFieldDelegate {
+
+    var steps:[String] = ["`"]
+    var delegate: StepsControllerVC?
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        
+    
         super.viewDidLoad()
-        
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(UINib(nibName: "listCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        tableView.estimatedRowHeight = 22
+        tableView.rowHeight = UITableView.automaticDimension
         
-        let VC = listCell()
-        VC.delegate = self
+        
+        tableView.register(UINib(nibName: "listCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        delegate?.toggleCellEditing()
+    }
+    
+    
+    @IBAction func addStepButton(_ sender: UIButton) {
+        
     }
     
 }
@@ -43,22 +54,13 @@ extension StepsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! listCell
         //listCell refers to nibName
-        
-        let text = ""
-        cell.textLabel?.text = text
         return cell
     }
     
     
 }
-//FIX ME
-extension StepsController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        print("ran")
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-}
+
+
 
 
 
