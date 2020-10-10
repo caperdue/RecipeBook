@@ -321,19 +321,35 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-tK-nF2">
-                                <rect key="frame" x="0.0" y="367" width="414" height="441"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9xh-tK-nF2">
+                                <rect key="frame" x="0.0" y="170" width="414" height="638"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyF-jz-61b">
+                                <rect key="frame" x="369" y="125" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="0wh-qW-llZ"/>
+                                    <constraint firstAttribute="width" constant="35" id="zA5-AZ-Nl4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="55"/>
+                                <color key="tintColor" red="0.91786038879999998" green="0.65064018960000003" blue="0.462698102" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="+"/>
+                                <connections>
+                                    <action selector="addRecipe:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iiB-Ab-kFF"/>
+                                    <action selector="addStepButton:" destination="DGw-9Q-wys" eventType="touchUpInside" id="lIt-sD-bEB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="u9o-cV-xbQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="9xh-tK-nF2" firstAttribute="top" secondItem="BA9-b0-IWL" secondAttribute="bottom" constant="247" id="3uY-qg-vJq"/>
+                            <constraint firstItem="9xh-tK-nF2" firstAttribute="top" secondItem="BA9-b0-IWL" secondAttribute="bottom" constant="50" id="3uY-qg-vJq"/>
                             <constraint firstItem="9xh-tK-nF2" firstAttribute="bottom" secondItem="ZDV-hj-D74" secondAttribute="bottom" id="8dJ-jU-ytY"/>
                             <constraint firstItem="BA9-b0-IWL" firstAttribute="top" secondItem="u9o-cV-xbQ" secondAttribute="top" constant="20" id="BRz-jf-gTb"/>
+                            <constraint firstItem="ZyF-jz-61b" firstAttribute="bottom" secondItem="9xh-tK-nF2" secondAttribute="top" constant="-10" id="Db9-5K-hfv"/>
                             <constraint firstItem="BA9-b0-IWL" firstAttribute="trailing" secondItem="ZDV-hj-D74" secondAttribute="trailing" constant="-10" id="J2j-3v-pET"/>
                             <constraint firstItem="9xh-tK-nF2" firstAttribute="trailing" secondItem="ZDV-hj-D74" secondAttribute="trailing" id="L4t-sY-1Fm"/>
+                            <constraint firstItem="ZyF-jz-61b" firstAttribute="trailing" secondItem="ZDV-hj-D74" secondAttribute="trailing" constant="-10" id="WtH-U9-M2f"/>
                             <constraint firstItem="BA9-b0-IWL" firstAttribute="leading" secondItem="ZDV-hj-D74" secondAttribute="leading" constant="10" id="iGX-sv-7V7"/>
                             <constraint firstItem="9xh-tK-nF2" firstAttribute="leading" secondItem="ZDV-hj-D74" secondAttribute="leading" id="k4u-Do-n8u"/>
                         </constraints>
