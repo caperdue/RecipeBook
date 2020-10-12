@@ -10,35 +10,24 @@ import Foundation
 import UIKit
 
 protocol listCellDelegate {
-    func sendSteps()
+    func tellDoneEditing(cell: UITableViewCell, _ step: String)
 }
 
 
 class listCell: UITableViewCell {
     
     @IBOutlet weak var textView: UITextView!
-    
     @IBOutlet weak var numberLabel: UILabel!
-   
     @IBOutlet weak var editImage: UIImageView!
-    
     @IBOutlet weak var editButton: UIButton!
-   
-    //Change this method. Refer to this: https://stackoverflow.com/questions/31222275/swift-delegate-beetween-two-view-controller-without-segue
     
-    let stepsVC = StepsController()
+    var delegate: listCellDelegate?
     
-    
-    
-    @IBAction func editButtonPressed(_ sender: Any) {
-        toggleCellEditing()
-
-    }
+    @IBOutlet weak var content: UIView!
     
     //Need this to be registered in StepsController
-
     override func awakeFromNib() {
-        stepsVC.delegate = self
+        
         super.awakeFromNib()
         textView.delegate = self
         textView.isScrollEnabled = false
@@ -50,10 +39,11 @@ class listCell: UITableViewCell {
         textView.textColor = UIColor.lightGray
         textView.text = "Enter first step here"
         
+        content.layer.cornerRadius = 17
+
     }
     
-    
-    
+
     //Get current value of the textView
     var textString: String {
         get {
@@ -66,28 +56,20 @@ class listCell: UITableViewCell {
     }
 
 }
-extension listCell: StepsControllerVC {
-    func toggleCellEditing() {
-        if textView.isUserInteractionEnabled {
-            textView.isUserInteractionEnabled = false
-            editImage.image = UIImage(systemName: "pencil.circle")
-        }
-        else {
-            textView.isUserInteractionEnabled = true
-            editImage.image = UIImage(systemName: "pencil.circle.fill")
-        }
-    }
-    
-    
-}
 
 extension listCell: UITextViewDelegate {
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        //If nothing is entered in box, then change symbol and remove placeholder text
+        if textView.textColor == UIColor.lightGray  {
             textView.text = ""
             textView.textColor = UIColor.black
+            editImage.image = UIImage(systemName: "pencil.circle.fill")
             
+        }
+        //If something is entered in box, then just change the image
+        if textView.textColor == UIColor.black {
+            editImage.image = UIImage(systemName: "pencil.circle.fill")
         }
     }
     
@@ -95,7 +77,12 @@ extension listCell: UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = "Enter first step here"
             textView.textColor = UIColor.lightGray
+            
         }
+        editImage.image = UIImage(systemName: "pencil.circle")
+        
+        //Tell the StepsController that the cell is no longer being edited
+        delegate?.tellDoneEditing(cell: self, textView.text)
     }
     func textViewDidChange(_ textView: UITextView) {
        
@@ -129,5 +116,28 @@ extension UITableViewCell {
             }
         }
 }
+
+
+extension listCell: StepsControllerVCDelegate {
+
+    func getStepText() -> String {
+        return textView.text
+    }
+    func changeStep(step: Int) {
+        numberLabel.text = "\(step)."
+    }
+    
+    
+    //Tell the StepsController that the add button was pressed when currently was not done editing (user didn't click off screen first)
+    func userPressedAdd() {
+        //If keyboard still present
+        self.endEditing(true)
+        if textView.text != "Enter first step here" && textView.text != "" {
+            delegate?.tellDoneEditing(cell: self, textView.text)
+        }
+            
+        }
+    }
+
     
 

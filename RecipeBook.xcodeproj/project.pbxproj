@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		4249B4512511763F00D7421E /* RecipeBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249B4502511763F00D7421E /* RecipeBook.swift */; };
 		4249B45325118B5800D7421E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4249B45225118B5800D7421E /* Utilities.swift */; };
-		42631E13252E4754000C7D0C /* listCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42631E12252E4754000C7D0C /* listCell.swift */; };
 		42B6A3C0250E8926005FAFDE /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6A3BF250E8926005FAFDE /* Ingredient.swift */; };
 		42B6A3C5250E8F4B005FAFDE /* IngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6A3C4250E8F4B005FAFDE /* IngredientViewController.swift */; };
 		42E54540252BD90B00DBB5D7 /* StepsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E5453F252BD90B00DBB5D7 /* StepsController.swift */; };
 		42E54543252BDCB300DBB5D7 /* listCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42E54542252BDCB300DBB5D7 /* listCell.xib */; };
+		42F105792533CD5700EE58C6 /* listCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F105782533CD5700EE58C6 /* listCell.swift */; };
 		42F26EB8250D85B900624CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F26EB7250D85B900624CFC /* AppDelegate.swift */; };
 		42F26EBA250D85B900624CFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F26EB9250D85B900624CFC /* SceneDelegate.swift */; };
 		42F26EBC250D85B900624CFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F26EBB250D85B900624CFC /* ViewController.swift */; };
@@ -28,11 +28,11 @@
 /* Begin PBXFileReference section */
 		4249B4502511763F00D7421E /* RecipeBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBook.swift; sourceTree = "<group>"; };
 		4249B45225118B5800D7421E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		42631E12252E4754000C7D0C /* listCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listCell.swift; sourceTree = "<group>"; };
 		42B6A3BF250E8926005FAFDE /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		42B6A3C4250E8F4B005FAFDE /* IngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewController.swift; sourceTree = "<group>"; };
 		42E5453F252BD90B00DBB5D7 /* StepsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsController.swift; sourceTree = "<group>"; };
 		42E54542252BDCB300DBB5D7 /* listCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = listCell.xib; sourceTree = "<group>"; };
+		42F105782533CD5700EE58C6 /* listCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = listCell.swift; sourceTree = "<group>"; };
 		42F26EB4250D85B900624CFC /* RecipeBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipeBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F26EB7250D85B900624CFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F26EB9250D85B900624CFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,9 +71,10 @@
 		42B6A3C2250E8A06005FAFDE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				42F105782533CD5700EE58C6 /* listCell.swift */,
 				42F26EBD250D85B900624CFC /* Main.storyboard */,
-				42631E12252E4754000C7D0C /* listCell.swift */,
 				42E54542252BDCB300DBB5D7 /* listCell.xib */,
+				42B6A3C3250E8A15005FAFDE /* Controller */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -111,7 +112,6 @@
 			children = (
 				42B6A3C1250E89ED005FAFDE /* Model */,
 				42B6A3C2250E8A06005FAFDE /* View */,
-				42B6A3C3250E8A15005FAFDE /* Controller */,
 				42F26EB7250D85B900624CFC /* AppDelegate.swift */,
 				42F26EB9250D85B900624CFC /* SceneDelegate.swift */,
 				42F26EC0250D85BA00624CFC /* Assets.xcassets */,
@@ -198,7 +198,7 @@
 				42F71294251FE40D00149FF0 /* StartRecipeController.swift in Sources */,
 				42B6A3C0250E8926005FAFDE /* Ingredient.swift in Sources */,
 				42E54540252BD90B00DBB5D7 /* StepsController.swift in Sources */,
-				42631E13252E4754000C7D0C /* listCell.swift in Sources */,
+				42F105792533CD5700EE58C6 /* listCell.swift in Sources */,
 				42F26EBC250D85B900624CFC /* ViewController.swift in Sources */,
 				42F26ECC250D8DE300624CFC /* Recipe.swift in Sources */,
 				42F26EB8250D85B900624CFC /* AppDelegate.swift in Sources */,
