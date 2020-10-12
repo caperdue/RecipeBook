@@ -74,7 +74,6 @@
 				42F105782533CD5700EE58C6 /* listCell.swift */,
 				42F26EBD250D85B900624CFC /* Main.storyboard */,
 				42E54542252BDCB300DBB5D7 /* listCell.xib */,
-				42B6A3C3250E8A15005FAFDE /* Controller */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,10 +109,11 @@
 		42F26EB6250D85B900624CFC /* RecipeBook */ = {
 			isa = PBXGroup;
 			children = (
-				42B6A3C1250E89ED005FAFDE /* Model */,
-				42B6A3C2250E8A06005FAFDE /* View */,
 				42F26EB7250D85B900624CFC /* AppDelegate.swift */,
 				42F26EB9250D85B900624CFC /* SceneDelegate.swift */,
+				42B6A3C1250E89ED005FAFDE /* Model */,
+				42B6A3C2250E8A06005FAFDE /* View */,
+				42B6A3C3250E8A15005FAFDE /* Controller */,
 				42F26EC0250D85BA00624CFC /* Assets.xcassets */,
 				42F26EC2250D85BA00624CFC /* LaunchScreen.storyboard */,
 				42F26EC5250D85BA00624CFC /* Info.plist */,
