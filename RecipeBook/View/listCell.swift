@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 
 protocol listCellDelegate {
-    func tellDoneEditing(cell: UITableViewCell, _ step: String)
+    func getPlaceHolderText() -> String
 }
-
 
 class listCell: UITableViewCell {
     
@@ -21,10 +20,9 @@ class listCell: UITableViewCell {
     @IBOutlet weak var editImage: UIImageView!
     @IBOutlet weak var editButton: UIButton!
     
-    var delegate: listCellDelegate?
-    
     @IBOutlet weak var content: UIView!
     
+    var delegate: listCellDelegate?
     //Need this to be registered in StepsController
     override func awakeFromNib() {
         
@@ -39,7 +37,7 @@ class listCell: UITableViewCell {
         textView.textColor = UIColor.lightGray
         textView.text = "Enter first step here"
         
-        content.layer.cornerRadius = 17
+        content.layer.cornerRadius = 10
 
     }
     
@@ -75,14 +73,11 @@ extension listCell: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Enter first step here"
+            textView.text = delegate?.getPlaceHolderText()
             textView.textColor = UIColor.lightGray
             
         }
         editImage.image = UIImage(systemName: "pencil.circle")
-        
-        //Tell the StepsController that the cell is no longer being edited
-        delegate?.tellDoneEditing(cell: self, textView.text)
     }
     func textViewDidChange(_ textView: UITextView) {
        
@@ -126,16 +121,10 @@ extension listCell: StepsControllerVCDelegate {
     func changeStep(step: Int) {
         numberLabel.text = "\(step)."
     }
-    
-    
-    //Tell the StepsController that the add button was pressed when currently was not done editing (user didn't click off screen first)
+
     func userPressedAdd() {
-        //If keyboard still present
+        //If keyboard still present, end editing
         self.endEditing(true)
-        if textView.text != "Enter first step here" && textView.text != "" {
-            delegate?.tellDoneEditing(cell: self, textView.text)
-        }
-            
         }
     }
 

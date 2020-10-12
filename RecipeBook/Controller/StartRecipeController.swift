@@ -15,8 +15,11 @@ class StartRecipeController: UIViewController {
    
     @IBOutlet weak var recipeNameTextField: UITextField!
     
+    @IBOutlet weak var headerView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.layer.cornerRadius = 10
     }
     
     @IBAction func gotToIngredientButtonPressed(_ sender: UIButton) {

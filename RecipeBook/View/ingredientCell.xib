@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReusableIngredientCell" rowHeight="65" id="ZmT-DU-JsW" customClass="ingredientCell" customModule="RecipeBook" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="65"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZmT-DU-JsW" id="mlO-rn-86r">
+                <rect key="frame" x="0.0" y="0.0" width="418" height="65"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uZT-1v-NNN">
+                        <rect key="frame" x="15" y="5" width="388" height="55"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-Tg-l2i">
+                                <rect key="frame" x="10" y="12" width="20" height="30.5"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="2tH-aK-ONg"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STf-aT-d7u">
+                                <rect key="frame" x="40" y="5" width="338" height="45"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HQ1-Tg-l2i" firstAttribute="leading" secondItem="uZT-1v-NNN" secondAttribute="leading" constant="10" id="Ffe-tl-UVt"/>
+                            <constraint firstItem="HQ1-Tg-l2i" firstAttribute="bottom" secondItem="uZT-1v-NNN" secondAttribute="bottom" constant="-10" id="G8Z-t6-ZbS"/>
+                            <constraint firstItem="STf-aT-d7u" firstAttribute="top" secondItem="uZT-1v-NNN" secondAttribute="top" constant="5" id="Pq0-ZH-41y"/>
+                            <constraint firstAttribute="trailing" secondItem="STf-aT-d7u" secondAttribute="trailing" constant="10" id="Rpr-eK-Yoe"/>
+                            <constraint firstAttribute="bottom" secondItem="STf-aT-d7u" secondAttribute="bottom" constant="5" id="e4n-8w-kzF"/>
+                            <constraint firstItem="HQ1-Tg-l2i" firstAttribute="top" secondItem="uZT-1v-NNN" secondAttribute="top" constant="10" id="m51-Lg-djJ"/>
+                            <constraint firstItem="STf-aT-d7u" firstAttribute="leading" secondItem="HQ1-Tg-l2i" secondAttribute="trailing" constant="10" id="vy8-RK-DSi"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                <constraints>
+                    <constraint firstItem="uZT-1v-NNN" firstAttribute="trailing" secondItem="mlO-rn-86r" secondAttribute="trailing" constant="-15" id="5WP-T8-rUY"/>
+                    <constraint firstItem="uZT-1v-NNN" firstAttribute="top" secondItem="mlO-rn-86r" secondAttribute="top" constant="5" id="hCC-DK-Dl6"/>
+                    <constraint firstItem="uZT-1v-NNN" firstAttribute="leading" secondItem="mlO-rn-86r" secondAttribute="leading" constant="15" id="qY3-zX-sr5"/>
+                    <constraint firstItem="uZT-1v-NNN" firstAttribute="bottom" secondItem="mlO-rn-86r" secondAttribute="bottom" constant="-5" id="z5B-vg-Nug"/>
+                </constraints>
+            </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="listCell"/>
+            <connections>
+                <outlet property="content" destination="uZT-1v-NNN" id="WHD-N6-2Jy"/>
+                <outlet property="ingredientLabel" destination="STf-aT-d7u" id="mtQ-FF-pCx"/>
+            </connections>
+            <point key="canvasLocation" x="-49.275362318840585" y="72.65625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
