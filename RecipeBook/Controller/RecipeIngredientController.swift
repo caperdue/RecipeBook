@@ -18,11 +18,13 @@ class RecipeIngredientController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var emptyIngredientsLabel: UILabel!
     
+    
     override func viewDidLoad() {
         ingredientTableView.dataSource = self
         ingredientTableView.delegate = self
         //FIX ME: change text to be what is registered in other VC
-        ingredientTableView.register(UINib(nibName: "listCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        ingredientTableView.register(UINib(nibName: "ingredientCell", bundle: nil), forCellReuseIdentifier: "ReusableIngredientCell")
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,10 +41,10 @@ extension RecipeIngredientController: UITableViewDataSource {
        }
        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           
-        let cell = ingredientTableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! listCell
+        print(ingredients)
+        let cell = ingredientTableView.dequeueReusableCell(withIdentifier: "ReusableIngredientCell", for: indexPath) as! ingredientCell
         let text = "\(ingredients[indexPath.row].getAmount()) \(ingredients[indexPath.row].getMeasurementType()) \(ingredients[indexPath.row].getName())"
-        cell.textLabel?.text = text
+        cell.ingredientLabel?.text = text
         return cell
 
        }
@@ -90,4 +92,3 @@ extension RecipeIngredientController: IngredientVCDelegate {
         ingredients.append(newIngredient)
     }
 }
-
