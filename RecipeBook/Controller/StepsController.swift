@@ -141,8 +141,9 @@ extension StepsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! listCell
-        cell.delegate = self
+        cell.editImage.isHidden = false
         self.delegate = cell
+        cell.delegate = self
         
         
       if numSteps > 1 {
@@ -156,19 +157,13 @@ extension StepsController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension StepsController: listCellDelegate {
- 
-    
-    func tellDoneEditing(cell: UITableViewCell, _ step: String) {
-      //  let index = tableView.indexPath(for: cell)
-      //  print(index)
-        //Make sure that the step entered is not empty, or has placeholder text
-       /* if step != "Enter first step here" && step != "" {
-            steps[index![1]] = step
-            
-        }*/
+    func getPlaceHolderText() -> String {
+        return Utilities.stepsPlaceHolder
     }
-
+    
+    
 }
+
 
 
 

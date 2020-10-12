@@ -14,7 +14,8 @@ enum IllegalEntryError: Error {
     case invalidEntry
 }
 class Utilities {
-
+    static let stepsPlaceHolder = "Enter step here"
+    static let ingredientPlaceHolder = ""
     static func giveAnimationError(view: UIView, for duration: TimeInterval = 0.5, withTranslation translation: CGFloat = 10)
     {
    let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {
