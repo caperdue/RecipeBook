@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         recipeTableView.dataSource = self
+    
         
     }
 

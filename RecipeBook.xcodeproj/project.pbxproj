@@ -23,7 +23,6 @@
 		42F26EC1250D85BA00624CFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F26EC0250D85BA00624CFC /* Assets.xcassets */; };
 		42F26EC4250D85BA00624CFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F26EC2250D85BA00624CFC /* LaunchScreen.storyboard */; };
 		42F26ECC250D8DE300624CFC /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F26ECB250D8DE300624CFC /* Recipe.swift */; };
-		42F26ECE250DACCE00624CFC /* RecipeIngredientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F26ECD250DACCE00624CFC /* RecipeIngredientController.swift */; };
 		42F71294251FE40D00149FF0 /* StartRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F71293251FE40D00149FF0 /* StartRecipeController.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +45,6 @@
 		42F26EC3250D85BA00624CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42F26EC5250D85BA00624CFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42F26ECB250D8DE300624CFC /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		42F26ECD250DACCE00624CFC /* RecipeIngredientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIngredientController.swift; sourceTree = "<group>"; };
 		42F71293251FE40D00149FF0 /* StartRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRecipeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,7 +88,6 @@
 				42E5453F252BD90B00DBB5D7 /* StepsController.swift */,
 				42F26EBB250D85B900624CFC /* ViewController.swift */,
 				42F71293251FE40D00149FF0 /* StartRecipeController.swift */,
-				42F26ECD250DACCE00624CFC /* RecipeIngredientController.swift */,
 				42B6A3C4250E8F4B005FAFDE /* IngredientViewController.swift */,
 			);
 			path = Controller;
@@ -202,7 +199,6 @@
 			files = (
 				42B6A3C5250E8F4B005FAFDE /* IngredientViewController.swift in Sources */,
 				426AD8822534EB3500B46822 /* ingredientCell.swift in Sources */,
-				42F26ECE250DACCE00624CFC /* RecipeIngredientController.swift in Sources */,
 				42F71294251FE40D00149FF0 /* StartRecipeController.swift in Sources */,
 				42B6A3C0250E8926005FAFDE /* Ingredient.swift in Sources */,
 				42E54540252BD90B00DBB5D7 /* StepsController.swift in Sources */,

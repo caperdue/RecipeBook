@@ -18,37 +18,43 @@ protocol StepsControllerVCDelegate {
 
 class StepsController: UIViewController, UITextFieldDelegate {
     var delegate: StepsControllerVCDelegate?
-
+    
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var stepsLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     var steps:[String] = []
     var numSteps:Int = 1
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.estimatedRowHeight = 22
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.layer.cornerRadius = 17
         
+        tableView.layer.cornerRadius = 17
+        stepsLabel.layer.cornerRadius = 10
+        topView.layer.cornerRadius = 10
         tableView.register(UINib(nibName: "listCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        tableView.contentInset = UIEdgeInsets(top: 50,left: 0,bottom: 0,right: 0)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+        tableView.backgroundColor = tableView.backgroundColor!.withAlphaComponent(0.5)
     }
     
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     
     @IBAction func addStepButton(_ sender: UIButton) {
-        if delegate?.getStepText() != "" {
+        if delegate?.getStepText() != "" && delegate?.getStepText() != "Enter step here" {
             numSteps += 1
             tableView.reloadData()
-            tableView.scroll(to: .bottom, animated: true)
+           // tableView.scroll(to: .bottom, animated: true)
         }
         
         print(steps)
@@ -67,7 +73,6 @@ class StepsController: UIViewController, UITextFieldDelegate {
 
 
 extension UITableView {
-
     public func reloadData(_ completion: @escaping ()->()) {
         UIView.animate(withDuration: 0, animations: {
             self.reloadData()
@@ -104,32 +109,9 @@ extension UITableView {
 }
 
 extension StepsController: UITableViewDataSource, UITableViewDelegate {
-   
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+    
 
-            let label = UILabel()
-            label.frame = CGRect.init(x: 20, y: -10, width: headerView.frame.width-10, height: headerView.frame.height-10)
-        
-        
-        switch(section){
-            case 0:
-                label.font = UIFont.boldSystemFont(ofSize: 20)
-                label.text = "Steps"
-        
-            case 1:
-                label.text = "Notes"
-                label.font = UIFont.boldSystemFont(ofSize: 15)
-            
-            default:
-                label.text = ""
-        }
-        
-            headerView.addSubview(label)
 
-            return headerView
-        }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numSteps
     }
@@ -141,10 +123,13 @@ extension StepsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! listCell
-        cell.editImage.isHidden = false
         self.delegate = cell
         cell.delegate = self
         
+        cell.setNeedsUpdateConstraints()
+            cell.updateConstraintsIfNeeded()
+        
+        cell.backgroundColor = UIColor.clear
         
       if numSteps > 1 {
         delegate?.changeStep(step: indexPath.row+1)

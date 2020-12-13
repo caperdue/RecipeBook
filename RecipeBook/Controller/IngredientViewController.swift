@@ -11,7 +11,6 @@ import UIKit
 protocol IngredientVCDelegate {
     func addIngredientToList(newIngredient: Ingredient)
     func reloadIngredients()
-    func removeStarterMessage(view: UIViewController)
 }
 
 
@@ -95,8 +94,6 @@ class IngredientViewController: UIViewController {
             delegate?.addIngredientToList(newIngredient: ingredient)
             //Reload ingredients here for quick update in TableView
             delegate?.reloadIngredients()
-            delegate?.removeStarterMessage(view: delegate as! UIViewController)
-
             
         //Navigate back to previous controller
         navigationController?.popViewController(animated: true)
@@ -143,9 +140,5 @@ extension IngredientViewController: UIPickerViewDataSource, UIPickerViewDelegate
             
         }
         return ""
-    }
-    
-    
-    
-    
+    } 
 }
