@@ -16,9 +16,6 @@ class StartRecipeController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var recipeNameTextField: UITextField!
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var cookinLabel: UILabel!
-    @IBOutlet weak var enterView: UIView!
     @IBOutlet weak var ingredientTableView: UITableView!
     
     
@@ -28,12 +25,7 @@ class StartRecipeController: UIViewController {
         ingredientTableView.dataSource = self
         ingredientTableView.delegate = self
         ingredientTableView.rowHeight = 40
-        
-        //Round some of the features
-        headerView.layer.cornerRadius = 10
-        cookinLabel.layer.cornerRadius = 10
-        
-        
+
         ingredientTableView.register(UINib(nibName: "ingredientCell", bundle: nil), forCellReuseIdentifier: "ReusableIngredientCell")
         
         ingredientTableView.layoutMargins = UIEdgeInsets.zero
@@ -41,6 +33,17 @@ class StartRecipeController: UIViewController {
         ingredientTableView.layer.cornerRadius=10
         
        
+    }
+    
+    
+    @IBAction func recipeTextBeganEditing(_ sender: UITextField) {
+        recipeNameTextField.text = ""
+    }
+    
+    @IBAction func recipeTextEndedEditing(_ sender: UITextField) {
+        if recipeNameTextField.text == "" {
+            recipeNameTextField.text = "E.x. Lasagna"
+        }
     }
     
     @IBAction func cancelPressed(_ sender: Any) {

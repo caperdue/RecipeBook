@@ -43,7 +43,28 @@ class IngredientViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-        
+    
+    @IBAction func ingredientEditBegan(_ sender: UITextField) {
+        ingredientNameTextField.text = ""
+    }
+    
+    @IBAction func ingredientEditEnded(_ sender: UITextField) {
+        if ingredientNameTextField.text == "" {
+            ingredientNameTextField.text = "E.x. Chocolate Chips"
+        }
+    }
+    
+    
+    @IBAction func textEditingBegan(_ sender: UITextField) {
+        amountTextField.text = ""
+    }
+    
+    @IBAction func textEditingEnded(_ sender: UITextField) {
+        if amountTextField.text == "" {
+            amountTextField.text = "E.x. 1, 1.5, 1 3/4, 2"
+        }
+    }
+    
     
     
     @IBAction func solidLiquidPressed(_ sender: UIButton) {
