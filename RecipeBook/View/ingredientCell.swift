@@ -11,14 +11,13 @@ import UIKit
 
 
 class ingredientCell: UITableViewCell {
-    
+
     @IBOutlet weak var ingredientLabel: UILabel!
-    
     @IBOutlet weak var content: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         content.layer.cornerRadius = 10
+
 
     }
 }
