@@ -30,19 +30,23 @@ class StartRecipeController: UIViewController {
         
         ingredientTableView.layoutMargins = UIEdgeInsets.zero
         ingredientTableView.separatorInset = UIEdgeInsets.zero
-        ingredientTableView.layer.cornerRadius=10
-        
        
+        //Open the keyboard to enter the name of the recipe
+        recipeNameTextField.becomeFirstResponder()
     }
     
-    
     @IBAction func recipeTextBeganEditing(_ sender: UITextField) {
-        recipeNameTextField.text = ""
+        if recipeNameTextField.text!.isEmpty || recipeNameTextField.text! == "E.x. Lasagna" {
+            recipeNameTextField.text = ""
+            recipeNameTextField.alpha = 1
+            
+        }
     }
     
     @IBAction func recipeTextEndedEditing(_ sender: UITextField) {
         if recipeNameTextField.text == "" {
-            recipeNameTextField.text = "E.x. Lasagna"
+            recipeNameTextField.text = Utilities.recipePlaceholder
+            recipeNameTextField.alpha = 0.8
         }
     }
     
@@ -51,15 +55,16 @@ class StartRecipeController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func gotToIngredientButtonPressed(_ sender: UIButton) {
-        if !recipeNameTextField.text!.isEmpty {
-            self.performSegue(withIdentifier: "startToIngredientsList", sender: self)
+    @IBAction func addIngredientPressed(_ sender: UIButton) {
+        if !recipeNameTextField.text!.isEmpty && recipeNameTextField.text != Utilities.recipePlaceholder {
+            recipeNameTextField.endEditing(true)
+            self.performSegue(withIdentifier: "addIngredientSegue", sender: self)
             
         }
         else {
             Utilities.giveAnimationError(view: recipeNameTextField, for: 0.5, withTranslation: 10)
         }
-       
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -67,13 +72,11 @@ class StartRecipeController: UIViewController {
     }
     //Setting IngredientViewController delegate to here so ingredients can be added
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ingredientsListToAddIngredient" {
+        if segue.identifier == "addIngredientSegue" {
             let destinationVC = segue.destination as! IngredientViewController
              destinationVC.delegate = self
         }
     }
-    
- 
 }
 
 extension StartRecipeController: IngredientVCDelegate {
@@ -87,9 +90,7 @@ extension StartRecipeController: IngredientVCDelegate {
             if self.ingredients.count > 0 {
                 let indexPath = IndexPath(row: self.ingredients.count-1, section: 0)
                 self.ingredientTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                
             }
-                                       
         }
     }
 }
