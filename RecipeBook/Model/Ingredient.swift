@@ -8,9 +8,11 @@
 
 import Foundation
 
+enum IllegalEntryError: Error {
+    case invalidName
+    case illegalAmount
+}
 struct Ingredient {
-    
-    
     private var name:String
     private var amount:String
     private var measurementType:String
@@ -19,10 +21,18 @@ struct Ingredient {
     
     static let availableLiquidMeasurements:[String] = ["gal", "quart", "pint", "cups", "fl oz", "mL", "liter"]
     
-    init(name: String, amount: String, measurementType: String){
+    init(name: String, amount: String, measurementType: String) throws {
         self.name = name
         self.amount = amount
         self.measurementType = measurementType
+        
+        if name == "" {
+            throw IllegalEntryError.invalidName
+        }
+        if amount == "" {
+            throw IllegalEntryError.illegalAmount
+        }
+        
     }
     
     func getName() -> String {
