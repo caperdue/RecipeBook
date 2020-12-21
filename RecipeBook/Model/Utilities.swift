@@ -13,6 +13,7 @@ import UIKit
 class Utilities {
     static let ingredientPlaceholder = "E.x. Tomato sauce"
     static let recipePlaceholder = "E.x. Lasagna"
+    static let stepsPlaceholder = "Begin typing here..."
     static func giveAnimationError(view: UIView, for duration: TimeInterval = 0.5, withTranslation translation: CGFloat = 10)
     {
    let propertyAnimator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.3) {

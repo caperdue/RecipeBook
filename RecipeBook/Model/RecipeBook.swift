@@ -2,14 +2,14 @@
 //  RecipeBook.swift
 //  RecipeBook
 //
-//  Created by Carly Perdue on 9/15/20.
+//  Created by Carly Perdue on 12/20/20.
 //  Copyright © 2020 Carly Perdue. All rights reserved.
 //
 
 import Foundation
 
 
-struct RecipeBook {
+public struct RecipeBook {
     static var allRecipes:[Recipe] = []
     
 }
