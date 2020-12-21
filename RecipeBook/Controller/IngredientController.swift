@@ -14,7 +14,8 @@ protocol IngredientVCDelegate {
 }
 
 
-class IngredientViewController: UIViewController {
+class IngredientController: UIViewController {
+    
     var delegate: IngredientVCDelegate?
     @IBOutlet weak var measurementType: UIPickerView!
     @IBOutlet weak var wholeNumPickerView: UIPickerView!
@@ -22,6 +23,9 @@ class IngredientViewController: UIViewController {
     @IBOutlet weak var addToListButton: UIButton!
     @IBOutlet weak var ingredientNameTextField: UITextField!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         measurementType.dataSource = self
@@ -38,7 +42,6 @@ class IngredientViewController: UIViewController {
         self.fractionPickerView.setValue(UIColor.white, forKeyPath: "textColor")
   
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -134,7 +137,7 @@ class IngredientViewController: UIViewController {
     }
     }
 
-extension IngredientViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension IngredientController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         switch(pickerView.tag) {
         case 1:

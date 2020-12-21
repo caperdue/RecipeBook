@@ -9,23 +9,24 @@
 import Foundation
 import UIKit
 
-class StartRecipeController: UIViewController {
+class IngredientListController: UIViewController {
+    //Properties for the local recipe to passed to next controller
     var recipeName: String?
     var ingredients:[Ingredient] = []
-
-
+    var recipe: Recipe = Recipe()
+    
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var ingredientTableView: UITableView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         ingredientTableView.dataSource = self
         ingredientTableView.delegate = self
         ingredientTableView.rowHeight = 40
-
+        
+        //Registering the ingredient table view with the custom cells
         ingredientTableView.register(UINib(nibName: "ingredientCell", bundle: nil), forCellReuseIdentifier: "ReusableIngredientCell")
         
         ingredientTableView.layoutMargins = UIEdgeInsets.zero
@@ -49,7 +50,15 @@ class StartRecipeController: UIViewController {
             recipeNameTextField.alpha = 0.8
         }
     }
-    
+    @IBAction func nextPressed(_ sender: UIBarButtonItem) {
+        if ingredients.count > 0 && recipeNameTextField.text != "" && recipeNameTextField.text != Utilities.recipePlaceholder {
+            //Setting the recipe object with ingredients and name
+                recipeNameTextField.endEditing(true)
+                recipe.setIngredients(ingredients)
+                recipe.setName(recipeNameTextField.text!)
+            self.performSegue(withIdentifier: "toStepsSegue", sender: self)
+        }
+    }
     @IBAction func cancelPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
@@ -73,13 +82,26 @@ class StartRecipeController: UIViewController {
     //Setting IngredientViewController delegate to here so ingredients can be added
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addIngredientSegue" {
-            let destinationVC = segue.destination as! IngredientViewController
+            let destinationVC = segue.destination as! IngredientController
              destinationVC.delegate = self
+        }
+        else if segue.identifier == "toStepsSegue" {
+            let destinationVC = segue.destination as! StepsController
+            destinationVC.delegate = self
         }
     }
 }
 
-extension StartRecipeController: IngredientVCDelegate {
+extension IngredientListController: RecipeObjectDelegate {
+    func getRecipeObject() -> Recipe {
+        return recipe
+    }
+    
+   
+    
+    
+}
+extension IngredientListController: IngredientVCDelegate {
     func addIngredientToList(newIngredient: Ingredient) {
         ingredients.append(newIngredient)
     }
@@ -94,8 +116,7 @@ extension StartRecipeController: IngredientVCDelegate {
         }
     }
 }
-
-extension StartRecipeController: UITableViewDelegate, UITableViewDataSource {
+extension IngredientListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredients.count
     }
