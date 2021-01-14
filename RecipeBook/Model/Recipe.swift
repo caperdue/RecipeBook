@@ -12,37 +12,57 @@ import UIKit
 
 class Recipe {
    
-   private var name:String? = nil
+    private var name:String?
     private var ingredients:[Ingredient] = []
-    private var image:UIImage? = nil
-   private var amount:Int? = nil
-   private var time:String? = nil
-    private var steps: String? = nil
-    private var recipeType: String? = nil
-    
-  /*
-    init(name: String, ingredients: [Ingredient], image: UIImage, amount: Int, time: String, steps: String, recipeType: String) {
-        self.name = name
-        self.ingredients = ingredients
-        self.image = image
-        self.amount = amount
-        self.time = time
-        self.steps = steps
-        self.recipeType = recipeType
-    }*/
+    private var image:UIImage?
+    private var amount:Int?
+    private var time: Dictionary<String, Int>?
+    private var steps: String?
+    private var recipeType: Int?
+    private var favorite:Bool?
     
     //Getters and setters
-    func getTime() -> String {
-        return self.time ?? ""
+    func parseTime() -> String {
+        if let validTime = self.time ?? nil {
+            var newString = ""
+            if validTime["hr(s)"] == 0 {
+                newString = "\(String(describing: validTime["min(s)"]!)) min"
+            }
+            else if validTime["min(s)"] == 0 {
+                newString = "\(String(describing: validTime["hr(s)"]!)) hr"
+            }
+            else {
+            newString = "\(String(describing: validTime["hr(s)"]!)) hr, \(String(describing: validTime["min(s)"]!)) min"
+            }
+            return newString
+
+        }
+        return "Error"
     }
-    func getRecipeName() -> String {
-        return self.name ?? ""
+    
+    func removeIngredientAtIndex(_ ingredientIndex: Int) {
+        self.ingredients.remove(at: ingredientIndex)
+    }
+    func getTime() -> Dictionary<String, Int>? {
+        return self.time
+    }
+    func getRecipeName() -> String? {
+        return self.name
     }
     func getImage() -> UIImage? {
         return self.image
     }
     func getIngredients() -> [Ingredient] {
         return self.ingredients
+    }
+    func getFavorite() -> Bool? {
+        return self.favorite
+    }
+    func getSteps() ->String? {
+        return self.steps
+    }
+    func getRecipeType() -> Int? {
+        return self.recipeType
     }
     func setName(_ newName: String) {
         self.name = newName
@@ -53,17 +73,23 @@ class Recipe {
     func setImage(_ newImage: UIImage) {
         self.image = newImage
     }
-    func setTime(_ newTime: String) {
+    func setTime(_ newTime: Dictionary<String, Int>) {
         self.time = newTime
     }
     func setSteps(_ newSteps: String) {
         self.steps = newSteps
     }
-    func setRecipeType(_ newRecipeType: String) {
+    func setRecipeType(_ newRecipeType: Int) {
         self.recipeType = newRecipeType
     }
 
     func setIngredients(_ newIngredients: [Ingredient]){
         self.ingredients = newIngredients
+    }
+    func setFavorite(_ newFavorite: Bool) {
+        self.favorite = newFavorite
+    }
+    func addIngredient(_ newIngredient: Ingredient) {
+        self.ingredients.append(newIngredient)
     }
 }

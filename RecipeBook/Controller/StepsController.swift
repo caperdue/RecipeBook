@@ -8,17 +8,11 @@
 
 import Foundation
 import UIKit
-//FIX ME: MAKE IT SO THAT DELEGATE PASSES AN OBJECT INSTEAD OF ATTRIBUTES
-protocol RecipeObjectDelegate {
-    func getRecipeObject() -> Recipe
-    
-}
+
 class StepsController: UIViewController {
-    var delegate: RecipeObjectDelegate?
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var recipeType: UISegmentedControl!
     @IBOutlet weak var stepsTextView: UITextView!
-    var updatedRecipe: Recipe = Recipe()
     override func viewDidLoad() {
         super.viewDidLoad()
         stepsTextView.delegate = self
@@ -27,34 +21,23 @@ class StepsController: UIViewController {
         stepsTextView.textContainerInset.left = 10
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     @IBAction func nextPressed(_ sender: UIBarButtonItem) {
         if stepsTextView.text != Utilities.stepsPlaceholder && stepsTextView.text != "" {
             //If there is a delegate, then safely copy over the values
             stepsTextView.endEditing(true)
-            updatedRecipe = (delegate?.getRecipeObject())!
-                updatedRecipe.setSteps(stepsTextView.text!)
-                updatedRecipe.setRecipeType(segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)!)
-            
-                performSegue(withIdentifier: "addPictureSegue", sender: self)
+            RecipeBook.draftedRecipe.setSteps(stepsTextView.text!)
+            RecipeBook.draftedRecipe.setRecipeType(segmentedControl.selectedSegmentIndex)
+            performSegue(withIdentifier: "addPictureSegue", sender: self)
             
         }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addPictureSegue" {
-            let destinationVC = segue.destination as! AddPictureController
-             destinationVC.delegate = self
+        else {
+            Utilities.showAlertMessage(vc: self, title: "Error", message: "Please enter the steps for your recipe!")
         }
     }
-}
-
-extension StepsController:  LastRecipeDelegate {
-    func getRecipeObject() -> Recipe {
-        return updatedRecipe
-    }
-    
-    
 }
 
 extension StepsController: UITextViewDelegate {
@@ -70,12 +53,3 @@ extension StepsController: UITextViewDelegate {
         }
     }
 }
-
-
-
-
-
-
-
-
-

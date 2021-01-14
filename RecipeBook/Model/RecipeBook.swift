@@ -8,8 +8,7 @@
 
 import Foundation
 
-
 public struct RecipeBook {
     static var allRecipes:[Recipe] = []
-    
+    static var draftedRecipe = Recipe()
 }

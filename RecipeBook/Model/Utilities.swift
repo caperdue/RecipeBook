@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Darwin
 
 
 class Utilities {
@@ -27,4 +28,59 @@ class Utilities {
     propertyAnimator.startAnimation()
     }
 
+    static func showAlertMessage(vc: UIViewController, title: String, message: String) {
+        let alert = UIAlertController(title: title, message: "Please enter the steps for your recipe!", preferredStyle: UIAlertController.Style.alert)
+        // add OK button
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        vc.present(alert, animated: true, completion: nil)
+    }
+    
+    static func resetDraft() {
+      RecipeBook.draftedRecipe = Recipe()
+    }
+    
+    static func setCheckTime(hourTextField: UITextField, minuteTextField: UITextField) -> Bool{
+        if minuteTextField.text == "-" && hourTextField.text != "-" || hourTextField.text == "-" && minuteTextField.text != "-" || minuteTextField.text != "-" && hourTextField.text != "-" {
+            RecipeBook.draftedRecipe.setTime(["hr(s)": hourTextField.text! != "-" ? (Int(hourTextField.text!)!): 0, "min(s)": minuteTextField.text! != "-" ? (Int(minuteTextField.text!)!): 0])
+                return true
+            }
+        else {
+           return false
+        }
+    }
+    
+    static func convertAmount(_ wholeNumber: Int, _ numerator: Int, _ denominator: Int, _ slashPresent: Bool) -> Dictionary<String, Int>? {
+        if wholeNumber != 0 {
+            //Means there is a whole number and fraction present
+            if numerator != 0 && denominator != 0 && slashPresent {
+                //Means fraction and whole number can be converted to a whole number
+                if (numerator % denominator) == 0 {
+                    return ["whole": wholeNumber+(numerator/denominator), "numerator": 0, "denominator": 0]
+                }
+                //Means there is a whole number and fraction
+                else {
+                    return ["whole": wholeNumber, "numerator": numerator, "denominator": denominator]
+                }
+            }
+            //Means that the amount is just a whole number
+            else if numerator == 0 && denominator == 0 && !slashPresent {
+                return ["whole": wholeNumber, "numerator": 0, "denominator":0]
+            }
+        }
+        //Handles that there is just a fraction
+        else if wholeNumber == 0 {
+            if numerator != 0 && denominator != 0 && slashPresent {
+                //Means sole fraction can be converted to a whole number
+                if (numerator % denominator) == 0 {
+                    return ["whole": wholeNumber+(numerator/denominator), "numerator": 0, "denominator":0]
+                }
+                //Means there is just a fraction
+                else {
+                    return["whole": 0, "numerator": numerator, "denominator": denominator]
+                }
+            }
+        }
+        return nil
+    }
 }
+
