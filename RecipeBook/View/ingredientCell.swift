@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class ingredientCell: UITableViewCell {
 
     @IBOutlet weak var ingredientLabel: UILabel!
@@ -17,7 +16,6 @@ class ingredientCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         content.layer.cornerRadius = 10
-
 
     }
 }
